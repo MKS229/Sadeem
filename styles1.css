@@ -1,0 +1,90 @@
+body{ background-color: burlywood;}
+.header {
+    position: relative;
+    text-align: center; /* Center align the elements */
+    color: #fff; /* Set text color to white */
+}
+
+/* Style for the cover photo */
+.cover-photo {
+    width: 100%; /* Ensure the photo covers the entire width */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 20px; /* Add margin to separate the photo from the text */
+}
+.navbar {
+    color: #fff; /* Set text color to white */
+    padding: 0, 0; /* Add padding to the top and bottom */
+    }
+        
+.navbar-nav {
+        margin-left: 120px;
+        padding: 0;
+        text-align: center; /* Center align the navigation links */
+        }
+        
+.navbar-nav .nav-item {
+        display: inline-block; /* Display the items horizontally */
+        margin: 0 10px; /* Add margin between the items */
+        }       
+.navbar-nav .nav-item:last-child {
+        margin-right: 0; /* Remove margin from the last item */
+        }
+.navbar-nav .nav-link {
+        color: #fff; /* Set text color to white */
+        text-decoration: none; /* Remove underline */
+        }
+.navbar-nav .nav-link:hover {
+        text-decoration: underline; /* Underline on hover */
+        } 
+
+.logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:60px; 
+    height: auto; }
+p.logo { color: white; 
+    size: 600%;
+    position: fixed;
+    top: 15;
+    left: 60;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
+footer {
+    background-color: rgb(223, 173, 108);
+    color: hsl(0, 0%, 100%);
+    padding: 20px;
+    text-align: center;
+    margin-top: 100px;
+}
+footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    }
+    
+footer ul li {
+    display: inline-block;
+    margin-right: 20px;
+    }
+    
+footer ul li:last-child {
+     margin-right: 0;
+    }
+    
+footer ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+    
+footer ul li a:hover {
+    text-decoration: underline;
+}
+.footer-icons a {
+    display: inline-block; /* Ensure the images are displayed inline */
+    margin-left: 10px; /* Adjust spacing between icons */
+    vertical-align: middle; /* Align icons vertically with text */}
+    
+.footer-icons a img {
+    width: 60px; /
+    height: auto; 
+    margin-left: 10px}
