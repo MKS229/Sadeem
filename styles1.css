@@ -80,7 +80,7 @@ footer ul li a:hover {
         transition: 1s ease-in-out;
       }
       
-      h2 {
+      .h2m {
         font-size: 30px;
         color: #fff;
         text-align: center;
@@ -124,7 +124,7 @@ footer ul li a:hover {
       .remember label input {
         accent-color: rgb(73, 38, 13);
       }
-      button {
+      .buttonm {
         position: relative;
         width: 100%;
         height: 40px;
@@ -153,13 +153,13 @@ footer ul li a:hover {
       .signUp-link p a:hover {
         text-decoration: underline;
       }
-      h1{
+      .h1m{
         font-family: 'Times New Roman', Times, serif;
         font-size: 120px;
           color: rgb(56, 5, 5);
           text-align: center;
        } 
-      h3{
+      .h3m{
         font-family: 'Times New Roman', Times, serif;
         font-size: 30px;
         color: rgb(56, 5, 5);
