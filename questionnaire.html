@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Feedback Form</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #5985a2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+label {
+    margin-bottom: 5px;
+}
+</style>
+
+<script>
+function ValidationForm() {
+    let name = document.forms["feedbackForm"]["name"];
+    let email = document.forms["feedbackForm"]["email"];
+    let age = document.forms["feedbackForm"]["age"];
+    let opinion = document.forms["feedbackForm"]["opinion"];
+    let gender = document.forms["feedbackForm"]["gender"];
+
+    // Validate name
+    if (name.value.length < 1 || !isNaN(name.value)) {
+        alert("Please enter a valid name without numbers.");
+        name.focus();
+        return false;
+    }
+
+    // Validate email
+    if (!validateEmail(email.value)) {
+        alert("Please enter a valid email address.");
+        email.focus();
+        return false;
+    }
+
+    // Validate age
+    if (age.value < 10) {
+        alert("Please enter a valid age.");
+        age.focus();
+        return false;
+    }
+
+    // Validate gender
+    if (!gender.value) {
+        alert("Please select your gender.");
+        return false;
+    }
+
+    // Validate opinion
+    if (opinion.value == "") {
+        alert("Please provide your opinion to help us improve.");
+        opinion.focus();
+        return false;
+    }
+
+    return true;
+}
+
+function validateEmail(email) {
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
+</script>
+</head>
+<body>
+<form name="feedbackForm" onsubmit="return ValidationForm()" method="post">
+    <h1>Feedback Form</h1>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name">  
+    <br><br>
+    <label for="gender">Gender:</label>
+    <input type="radio" id="male" name="gender" value="male">
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female">
+    <label for="female">Female</label>
+    <br><br>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" required>
+    <br><br>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required>
+    <br><br>
+    <label for="satisfaction">How satisfied are you with our website?</label><br>
+    <input type="checkbox" value="Very satisfied" name="satisfaction">Very satisfied
+    <input type="checkbox" value="Satisfied" name="satisfaction">Satisfied
+    <input type="checkbox" value="Neutral" name="satisfaction">Neutral
+    <input type="checkbox" value="Unsatisfied" name="satisfaction">Unsatisfied
+    <input type="checkbox" value="Very unsatisfied" name="satisfaction">Very unsatisfied
+    <br><br>
+    <label for="opinion">Share your opinion to help us improve:</label><br>
+    <textarea id="opinion" name="opinion" rows="4"></textarea>
+    <br>
+    <button id="button" type="submit" value="Submit">Submit</button>
+</form>
+
+</body>
+</html>
