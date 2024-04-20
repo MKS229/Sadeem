@@ -8,19 +8,51 @@
             *{
                 margin: 0;
                 padding: 0;}
-    
+             /* Dropdown styles */
+            .dropdown-menu {
+                display: none;
+                position: absolute;
+                background-color: burlywood;
+                min-width: 200px;
+                z-index: 1;}
+            .dropdown-item {
+                color: #fff;
+                text-decoration: none;
+                display: block;
+                padding: 8px 16px;}
+            .dropdown-item:hover {
+                background-color: #555;}
+            #banner-container {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: rgb(179, 142, 94);
+                color: #fff;}
+            #text-banner {
+                display: inline-block;
+                padding: 10px;
+                animation: moveBanner 10s linear infinite;}
+            @keyframes moveBanner {
+                0% {
+                    transform: translateX(-100%);
+                }
+                100% {
+                    transform: translateX(100%);
+                }
+            }
             .header {
                 position: relative;
                 width: 100%;
-                height: 100vh; /* This will make the header cover the entire viewport height */
-                overflow: hidden; /* Ensure the image doesn't overflow */}
+                height: 100vh; 
+                overflow: hidden; }
             img.cover-photo {
                 position: absolute;
                 top: 0;
                 left: 0;
-                width: 100%; /* Ensure the photo covers the entire width of the header */
-                height: auto; /* Maintain aspect ratio */
-                z-index: -1; /* Place the photo behind other content */
+                width: 100%; 
+                height: auto; 
+                z-index: -1; 
                 object-fit: cover; /* Ensure the photo covers the entire header area */}
             p.tx1{ color: white;
                 font-family: 'Times New Roman', Times, serif;
@@ -61,10 +93,41 @@
                 color: rgb(148, 76, 25);
                 font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
                 font-size: xx-large;
-                margin: 40%;}       
+                margin: 40%;}   
+            .gallery{
+                position: relative;
+                width: 100%;
+                height: 400px;
+                overflow: hidden;}
+            .gallery-image {
+                position: absolute;
+                margin-left: 35%;
+                margin-top: 3%;
+                
+                opacity: 0; /* Initially hide all images */
+                transition: opacity 1s ease-in-out;}
+                  
         </style>   
     </head>
     <body>
+        <div id="banner-container">
+            <div id="text-banner">Welcome to the Sadeem Website! Today is <span id="current-date" ></span>, and the time is <span id="current-time" ></span></div>
+        </div>
+        <script>
+            /* JavaScript for updating date and time */
+            const currentDateElement = document.getElementById('current-date');
+            const currentTimeElement = document.getElementById('current-time');
+          
+            // Update date and time every second
+            setInterval(() => {
+              const now = new Date();
+              const currentDate = now.toLocaleDateString();
+              const currentTime = now.toLocaleTimeString();
+          
+              currentDateElement.textContent = currentDate;
+              currentTimeElement.textContent = currentTime;
+            }, 1000);
+        </script>
         <div class="container-fluid">
         <nav class="navbar navbar-expand-sm">
             <ul class="navbar-nav">
@@ -78,7 +141,14 @@
                 <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
                 <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li> 
                 <li class="nav-item"><a class="nav-link" href="sell.html">Sell</a></li>
-                <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>         
+                <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>  
+                <li class="nav-item"><a class="nav-link" href=#>More</a>
+                    <ul class="dropdown-menu">
+                        <li class="nav-item"><a class="nav-link" href="questionnaire.html">Questionnaire</a></li>         
+                        <li class="nav-item"><a class="nav-link" href="calculate .html">Calculate</a></li>         
+                        <li class="nav-item"><a class="nav-link" href="fun.html">Fun</a></li>   
+                    </ul>
+                </li>                           
             </ul>
        </nav>
        </div>
@@ -100,9 +170,23 @@
             <img src="cuorses.JPG" alt="digital disigns page" class="page"style="float: right; margin-right: 10%">
         </a>
         <tx3>Super shears</tx3>
-        <a href="community.html">
-            <img src="van-gogh.JPG" alt="comminuty shars" style="margin-left: 30%; margin-top: 3%;">
-        </a>
+        <div class="gallery">
+            <img src="shear3.png" alt="photo 1" class="gallery-image">
+            <img src="shear1.png" alt="photo 2" class="gallery-image">
+            <img src="shear4.png" alt="photo 3" class="gallery-image">
+        </div>
+        <script>
+            const images = document.querySelectorAll('.gallery-image');
+            let currentImageIndex = 0;
+
+            function showNextImage() {
+                images[currentImageIndex].style.opacity = 0; // Hide current image
+                currentImageIndex = (currentImageIndex + 1) % images.length; // Increment index
+                images[currentImageIndex].style.opacity = 1; // Show next image
+            }
+            images[currentImageIndex].style.opacity = 1; // Show first image
+            setInterval(showNextImage, 3000); // Rotate images every 3 seconds (3000 milliseconds)
+        </script>
         <br>
         <footer>
             <ul>
