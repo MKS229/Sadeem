@@ -5,47 +5,35 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="styles1.css">   
 <style>
- * {
-    margin: 0;
-    padding: 0;
-        }
-p.tx1 {
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    font-weight: bold;
-    font-size: 60px;
-    position: absolute;
-    text-align: center;
-    margin-top: 10px;
-     margin-left: 350px;}
+ 
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
     background-color: #5985a2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    
 }
 form {
-    background-color: white;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: hsla(9, 100%, 89%, 0.3);
     padding: 20px;
-    border-radius: 8px;
+    border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #2a898b;
     color: white;
-    padding: 14px 20px;
+    padding: 14px 180px;
     margin-top: 10px;
     border: none;
     border-radius: 4px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #174d3a;
 }
 
 label {
@@ -133,8 +121,8 @@ function validateEmail(email) {
 </div>
 <form name="feedbackForm" onsubmit="return ValidationForm()" method="post">
     <h1>Questionnaire</h1>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name">  
+    <label for="name" >Name:</label>
+    <input type="text" id="name" name="name" id="inbox">  
     <br><br>
     <label for="gender">Gender:</label>
     <input type="radio" id="male" name="gender" value="male">
@@ -156,7 +144,7 @@ function validateEmail(email) {
     <input type="checkbox" value="Very unsatisfied" name="satisfaction">Very unsatisfied
     <br><br>
     <label for="opinion">Share your opinion to help us improve:</label><br>
-    <textarea id="opinion" name="opinion" rows="4"></textarea>
+    <textarea id="opinion" name="opinion" rows="4" cols="50"></textarea>
     <br>
     <button id="button" type="submit" value="Submit">Submit</button>
 </form>
@@ -177,3 +165,4 @@ function validateEmail(email) {
 </footer>
 </body>
 </html>
+
