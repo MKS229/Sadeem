@@ -75,39 +75,36 @@
         
         <div class="shopping-cart">
                 
-                  <table>
-                    <thead>
-                        <tr>
-                            <th colspan="2">Product</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Remove</th>
-                            
-                        </tr>
-                        
-                    </thead>
-                    <!--the item will be added here-->
-                    <tbody class="cart-items">
-                        <tr class="cart-row">
-                            <th><img class="Image" src="acrylic.jpg"></th>
-                            <th>Acrylic color</th>
-                            <th><input class="cart-quantity-input" type="number" value="1" min="1"></th>
-                            <th class="cart-price">2.50 OMR</th>
-                            <th><button type="button" class="btn btn-danger">Remove</button></th>
-                        </tr>
-                        <tr class="cart-row"></tr>
-                    </tbody>
-                </table>
-                
-                    <!--the total and chackout-->
-                    <p>Have a Discount Code ! : <input type="text" id="DiscountCode" value="" min="1"></p>
-                    <p>Tax (5%): OMR <span id="cart-tax">0</span></p>
-                    <p>Discount: OMR <span id="cart-discount">-</span></p>
-                    <p>Total: OMR <span id="cart-total">0</span></p>
-                    <button class="btn" id="clear-cart" >Clear Cart</button>
-                    <a href="payForm.html" > <button class="checkout" >Checkout</button> </a>
-                 
-                      
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody class="cart-items" id="cart">
+                    <tr class="cart-row">
+                        <td>Acrylic Color</td>
+                        <td><img src="acrylic.jpg" class="Image" alt="Acrylic"></td>
+                        <td class="cart-price">2.50 OMR</td>
+                        <td><input class="cart-quantity-input" type="number" value="1" min="1"></td>
+                        <td><button type="button" class="btn btn-danger">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+    
+            <p>Discount Code: <input type="text" id="DiscountCode"></p>
+            <p>Tax (5%): OMR <span id="cart-tax">0</span></p>
+            <p>Discount: OMR <span id="cart-discount">0</span></p>
+            <p>Total: OMR <span id="cart-total">0</span></p>
+    
+            <button style="width: 49.5%;" class="btn btn-info btn-calculate">Calculate</button>
+            <button style="width: 49.5%;" class="btn" id="clear-cart">Clear Cart</button>
+            <a href="checkout.html"><button class="checkout">Checkout</button></a>
+         </div>  
      <footer>
         <ul>
             <li><a href="about.html">About Us</a></li>
