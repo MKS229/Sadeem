@@ -13,8 +13,28 @@ function ready() {
 
     var removeButtons = document.querySelectorAll('.btn-danger');
     removeButtons.forEach(button => button.addEventListener('click', removeCartItem));
-}
 
+    // add cart item
+
+}
+function elmentFromHTML(html){
+    const template = document.createElement("template");
+    template.innerHTML = html.trim();
+    return template.content.firstElementChild;
+}
+function newCartItem(ItmName,imgSrc , price ){
+    const newItem = elmentFromHTML(`
+    <tr class="cart-row">
+        <td>${ItmName}</td>
+        <td><img src="${imgSrc}" class="Image" alt="Product Image"></td>
+        <td class="cart-price">${price} OMR</td>
+        <td><input class="cart-quantity-input" type="number" value="1" min="1"></td>
+        <td><button type="button" class="btn btn-danger">Remove</button></td>
+    </tr>
+    `)
+    document.getElementById("cart").append(newItem);
+    updateCartTotal();
+}
 function quantityChanged(event) {
     var input = event.target;
     if (isNaN(input.value) || input.value <= 0) {
