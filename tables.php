@@ -1,39 +1,42 @@
 <html>
     <head>
-        <titel>Tables</titel>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <link rel="stylesheet" href="styles1.css">
+        
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tables</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="styles1.css">
 
-       <!-- <style>
-            * {
-            margin: 0;
-            padding: 0;}
-            p.tx1 {
-                color: white;
-                font-family: 'Times New Roman', Times, serif;
-                font-weight: bold;
-                font-size: 60px;
-                position: absolute;
-                text-align: center;
-                margin-top: 10px;
-                margin-left: 350px;}
+       <style>
             table{
-                border-collapse: collapse;
-                width: 50%;
-                margin: 30px;}
-            h3 {
-                margin: 30px;}
-            th, td {
-                border: 1px solid black;
-                padding: 8px;
-                text-align: left;}
-            body {
-                font-family: 'Nunito', sans-serif; 
-                background: #FFDD88; 
-                background: linear-gradient(0deg, rgba(203, 131, 100,0.4) 0%, rgba(255, 235, 178,1) 100%);
+                width: 100%;
+                margin-top: 20px; /* Added margin for spacing */
+                border-collapse: collapse; /* Collapsed borders for better appearance */
             }
-        </style>-->
+            th, td {
+                     padding: 10px; /* Adjusted padding for better spacing */
+                     
+                     border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Added border bottom for table cells */
+            }
+
+            th {
+                    background-color: rgb(56, 5, 5);
+                    color: #fff;
+            }
+            h3{
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 40px; /* Adjusted font size for better readability */
+                color: rgb(56, 5, 5);
+                text-align: center;
+            }
+            #connect{
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 24px; /* Adjusted font size for better readability */
+                color: rgba(22, 154, 130, 0.808);
+                text-align: center; 
+            }
+        </style>
     </head>
     <body>
         <div class="container-fluid">
@@ -60,25 +63,26 @@
         <?php 
         $servername = "localhost";
         $username = "root";
-        $password = '';
-        $dbname = "sadeem";
+        $password = "";
+        $dbname = "dbsadeem";
         // 1- Create DB connection 
         $conn = mysqli_connect($servername, $username, $password, $dbname);
         // 2- Check connection 
         if (!$conn) {
             die("Connection failed:". mysqli_connect_error()); }
         else {
-            print "You are connected to $dbname ‹br />"; }
+            echo "<br/><br/><p id='connect'> You are successfully connected to Sadeem's Data Base </p>"; 
+        }
         // 3- Specify SQL statement for the Courses table 
-        $sql_courses = "SELECT DISTINCT * FROM  'courses' "; 
+        $sql_courses = "SELECT DISTINCT * FROM courses"; 
         $result_courses = mysqli_query($conn, $sql_courses);
 
         // 4- Specify SQL statement for the Questionnaire table 
-        $sql_questionnaire = "SELECT DISTINCT * FROM 'questionnaire'"; 
+        $sql_questionnaire = "SELECT DISTINCT * FROM questionnaire"; 
         $result_questionnaire= mysqli_query ($conn, $sql_questionnaire);
 
         // 5- Specify SOL statement for the register table 
-        $sql_register = "SELECT DISTINCT * FROM 'register'"; 
+        $sql_register = "SELECT DISTINCT * FROM register"; 
         $result_register = mysqli_query ($conn, $sql_register); 
         ?>
         <br> 
@@ -95,13 +99,14 @@
             </thead>
             <tbody>
                 <?php
-                while($row_courses= mysqli_fetch_assoc($result_courses)) { 
-                    echo "<tr>"; 
-                    echo "<td>{$row_courses['name']}</td›"; 
-                    echo "<td>{$row_courses['artist']}</td>"; 
-                    echo "<td>{$row_courses['date']}/td>"; 
-                    echo "</tr>";
-                }
+                     while($row_courses= mysqli_fetch_assoc($result_courses)) { 
+                       echo "<tr>".
+                        "<td>".$row_courses['name']."</td>".
+                        "<td>".$row_courses['artist']."</td>".
+                        "<td>".$row_courses['date']."</td>".
+                        "</tr>";
+                    }
+                
                 ?>
             </tbody>
         </table>
@@ -114,17 +119,17 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Ege</th>
+                    <th>Age</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 while($row_questionnaire= mysqli_fetch_assoc($result_questionnaire)) { 
-                    echo "<tr>"; 
-                    echo "<td>{$row_questionnaire['name']}</td›"; 
-                    echo "<td>{$row_questionnaire['email']}</td>"; 
-                    echo "<td>{$row_questionnaire['age']}/td>"; 
-                    echo "</tr>";
+                    echo "<tr>".
+                        "<td>".$row_questionnaire['name']."</td>".
+                        "<td>".$row_questionnaire['email']."</td>".
+                        "<td>".$row_questionnaire['age']."</td>".
+                        "</tr>";
                 }
                 ?>
             </tbody>
@@ -144,11 +149,11 @@
             <tbody>
                 <?php
                 while($row_register= mysqli_fetch_assoc($result_register)) { 
-                    echo "<tr>"; 
-                    echo "<td>{$row_register['user']}</td›"; 
-                    echo "<td>{$row_register['email']}</td>"; 
-                    echo "<td>{$row_register['password']}/td>"; 
-                    echo "</tr>";
+                    echo "<tr>".
+                        "<td>".$row_register['user']."</td>".
+                        "<td>".$row_register['email']."</td>".
+                        "<td>".$row_register['password']."</td>".
+                        "</tr>";
                 }
                 ?>
             </tbody>
