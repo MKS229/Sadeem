@@ -5,7 +5,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="styles1.css">
 
-        <style>
+       <!-- <style>
             * {
             margin: 0;
             padding: 0;}
@@ -33,7 +33,7 @@
                 background: #FFDD88; 
                 background: linear-gradient(0deg, rgba(203, 131, 100,0.4) 0%, rgba(255, 235, 178,1) 100%);
             }
-        </style>
+        </style>-->
     </head>
     <body>
         <div class="container-fluid">
@@ -61,25 +61,25 @@
         $servername = "localhost";
         $username = "root";
         $password = '';
-        $dbname = "novelsworms";
+        $dbname = "sadeem";
         // 1- Create DB connection 
-        $conn = mysqli_connect($servername, Susername, Spassword, Sdbname);
+        $conn = mysqli_connect($servername, $username, $password, $dbname);
         // 2- Check connection 
         if (!$conn) {
-            die("Connection failed:" • mysqli_connect_error()); }
+            die("Connection failed:". mysqli_connect_error()); }
         else {
             print "You are connected to $dbname ‹br />"; }
         // 3- Specify SQL statement for the Courses table 
         $sql_courses = "SELECT DISTINCT * FROM  'courses' "; 
-        $result_courses = mysqli_query(Sconn, $sql_courses);
+        $result_courses = mysqli_query($conn, $sql_courses);
 
         // 4- Specify SQL statement for the Questionnaire table 
         $sql_questionnaire = "SELECT DISTINCT * FROM 'questionnaire'"; 
-        $result_questionnaire= mysqli_query (Sconn, $sql_questionnaire);
+        $result_questionnaire= mysqli_query ($conn, $sql_questionnaire);
 
         // 5- Specify SOL statement for the register table 
         $sql_register = "SELECT DISTINCT * FROM 'register'"; 
-        $result_register = mysqli_query (Sconn, $sql_register); 
+        $result_register = mysqli_query ($conn, $sql_register); 
         ?>
         <br> 
         <br> 
