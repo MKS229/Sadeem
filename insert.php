@@ -67,38 +67,39 @@
 //Database connection parameters 
 $servername = "localhost"; 
 $username = "root"; 
-$password = "'"; 
-$dbname = "novelsworm"; 
+$password = ""; 
+$dbname = "dbsadeem"; 
 
 //Variables 
-$name = $artist = $date = ""; 
+$name = "";
+$artist ="";
+$date = ""; 
 
 //Check if the form is submitted by post method 
-if ($_ SERVER[" REQUEST _METHOD"] = "POST"){
+if ($_SERVER["_REQUEST_METHOD"] = "POST"){
     // Retrieve and store form data 
-    $name = $_POST ["name"]; 
-    $artist = $_POST ["artist"]; 
+    $name = $_POST["name"]; 
+    $artist = $_POST["artist"]; 
     $date = $_POST["date"];
 
     //Create a connection to the database 
-    $conn = mysqli_connect ($servername, $username, $password, $abname); 
+    $conn = mysqli_connect ($servername, $username, $password, $dbname); 
     if (!$conn) { 
         die("Connection failed: " . mysqli_connect_error());
     }
     //SQL query to insert Courses information into the database 
-    $sql = "INSERT INTO book (name, artist, date) VALUES ('$name', 'artist', '$date')"; 
+    $sql = "INSERT INTO courses (name,artist,date) VALUES ('$name', '$artist', '$date')"; 
     
     //Display success or error message 
-    echo "‹p›Record inserted successfully!</p›"; 
-    $result = mysqli _query($conn, $sql); 
+
+    echo '<p>Record inserted successfully!</p>'; 
+    $result = mysqli_query($conn, $sql); 
     if ($result){ 
         echo "";} 
     else { echo "Error: " . $sql . "‹br›" . mysqli_error($conn); } 
-    mysqli_ _close$conn); //Close the database connection 
+    mysqli_close($conn); //Close the database connection 
 }
 ?><br><br><b>
-
-</body>
 <footer>
     <ul>
         <li><a href="about.html">About Us</a></li>
@@ -114,4 +115,6 @@ if ($_ SERVER[" REQUEST _METHOD"] = "POST"){
         </a>
     </div>
 </footer>
+</body>
+
 </html>
