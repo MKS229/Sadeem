@@ -36,6 +36,7 @@
                 color: rgba(22, 154, 130, 0.808);
                 text-align: center; 
             }
+            
         </style>
     </head>
     <body>
@@ -53,6 +54,7 @@
                     <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
                     <li class="nav-item"><a class="nav-link" href="sell.html">Sell</a></li>
                     <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="tables.php">Data</a></li>
                 </ul>
             </nav>
         </div>

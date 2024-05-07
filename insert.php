@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fun</title>
+    <title>Insert</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="styles1.css">
@@ -12,15 +11,39 @@
             margin: 0;
             padding: 0;
         }
-        p.tx1 {
-            color: white;
+        .h1m {
             font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-            font-size: 60px;
-            position: absolute;
+            font-size: 36px; /* Adjusted font size for better readability */
+            color: rgb(56, 5, 5);
             text-align: center;
-            margin-top: 10px;
-            margin-left: 350px;
+        }
+
+        .h3m {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 24px; /* Adjusted font size for better readability */
+            color: rgb(56, 5, 5);
+            text-align: center;
+        }
+        input{
+            width: 280px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .butn{
+            
+            width:30%;
+            height: 40px;
+            background: rgba(41, 0, 176, 0.808);
+            font-size: 20px;
+            color: #fff;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            text-align: center;
+        }
+        .form{
+            text-align : center;
         }
     </style>
 </head>
@@ -39,6 +62,7 @@
             <li class="nav-item"><a class="nav-link" href="community.html">Community</a></li>
             <li class="nav-item"><a class="nav-link" href="sell.html">Sell</a></li>
             <li class="nav-item"><a class="nav-link" href="cart.html">Cart</a></li>
+            <li class="nav-item"><a class="nav-link" href="tables.php">Data</a></li>
         </ul>
     </nav>
 </div>
@@ -46,23 +70,25 @@
     <img src="logo.png" alt="logo" class="logo">
     <p class="logo">Sadeem</p>
 </div>
-<div> 
-    <h1 background-color:rgba(255, 249, 234, 1); >Insert</h1> 
+<div> <br>
+    <h1 class="h1m" >Insert</h1> 
 </div>
-<br><br><br>
+<br><br>
 
 <!--A form for insertiing the Courses information -->
-<h5>Enter the Courses informations to insert it:</h5><br>
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"style="margin-left: 10%;"> 
-    <label for="name">Name:</label> 
-    <input type="text" name="name"><br><br>
-    <label for="artist">Artist:</label> 
-    <input type="text" name="artist"><br><br> 
-    <label for="Date">date:</label> 
-    <input type="text" name="date"><br><br> 
-    <input type="submit" name="submit" value="insert"> 
-</form><br> 
-
+<h5 class="h3m">Enter the Courses informations to insert it:</h5><br>
+<div class="form">
+    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+        <label class="h3m" for="name">Name:</label> 
+        <input type="text" name="name" required><br><br>
+        <label class="h3m" for="artist">Artist:</label> 
+        <input type="text" name="artist" required><br><br>
+        <label class="h3m" for="Date">date: </label> 
+        <input type="text" name="date" required><br><br>
+        <input class ="butn" type="submit" name="submit" value="insert"> 
+    </form><br>
+</div>
+ 
 <?php 
 //Database connection parameters 
 $servername = "localhost"; 
@@ -76,11 +102,11 @@ $artist ="";
 $date = ""; 
 
 //Check if the form is submitted by post method 
-if ($_SERVER["_REQUEST_METHOD"] = "POST"){
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
     // Retrieve and store form data 
-    $name = $_POST["name"]; 
-    $artist = $_POST["artist"]; 
-    $date = $_POST["date"];
+    $name = $_POST['name']; 
+    $artist = $_POST['artist']; 
+    $date = $_POST['date'];
 
     //Create a connection to the database 
     $conn = mysqli_connect ($servername, $username, $password, $dbname); 
@@ -92,14 +118,19 @@ if ($_SERVER["_REQUEST_METHOD"] = "POST"){
     
     //Display success or error message 
 
-    echo '<p>Record inserted successfully!</p>'; 
+    echo '<p class="h3m" style="color: green;">Record inserted successfully!</p>'; 
     $result = mysqli_query($conn, $sql); 
     if ($result){ 
         echo "";} 
     else { echo "Error: " . $sql . "‹br›" . mysqli_error($conn); } 
     mysqli_close($conn); //Close the database connection 
 }
-?><br><br><b>
+?><br><br>
+<div style="text-align:center;">
+        <a href="courses.html">
+            <button type="button" class="btn btn-outline-dark" style="width: 40%; ">Back to Courses Bage</button>
+        </a>
+</div>
 <footer>
     <ul>
         <li><a href="about.html">About Us</a></li>

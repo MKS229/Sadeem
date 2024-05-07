@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>Courses</title>
+    <title>Search</title>
     <meta name="description" content="be part of our artist!">
     <meta name="keyword" content="sadeem,Art,community,colors,paint,Course"><!--the keyword for our website-->
     <meta name="viewport" content="width=device-width, initial-scale= 1.0 ">
@@ -118,70 +118,6 @@ input{
     text-align: center;
 }
  </style>
-<script>
-    // Object type for course information
-function Course(name, artist, dateTime) {
-    this.name = name;
-    this.artist = artist;
-    this.dateTime = dateTime;
-}
-
-// Object type for artist information
-function Artist(name, username) {
-    this.name = name;
-    this.username = username;
-}
-// Array to store course information
-var courses = [
-    new Course("Portrait Drawing", new Artist("Arwa Said"), "28-04-2024 (10:00 - 12:00 AM)"),
-    new Course("Coloring Basics", new Artist("Nora Hamid"), "21-07-2024 (08:00 - 10:00 PM)"),
-    new Course("Origami Art", new Artist("Kim Shong"), "07-03-2024 (02:00 - 03:00 PM)")
-];
-// Function to display courses in a table
-function displayCourses() {
-    var table = document.getElementById("coursesTable");
-    table.innerHTML = ""; // Clear previous content
-
-    // Create table header
-    var headerRow = table.insertRow();
-    headerRow.innerHTML = "<th>Course</th><th>Artist</th><th>Date & Time</th><th>Register Now</th>";
-
-    // Iterate through courses array to populate table
-    courses.forEach(function(course) {
-        var row = table.insertRow();
-        row.innerHTML = "<td>" + course.name + "</td><td>by artist <a href=''>" + course.artist.name + " " + course.artist.username + "</a></td><td>" + course.dateTime + "</td><td><button type='button' class='btn btn-light'>Register Now</button></td>";
-    });
-}
-
-// Call the function to display courses initially
-displayCourses();
-// Function to search for courses
-function searchCourses() {
-    var searchText = document.getElementById("searchInput").value.toLowerCase();
-    var filteredCourses = courses.filter(function(course) {
-        // Check if the course name or artist name/username contains the search text
-        return (
-            course.name.toLowerCase().includes(searchText) ||
-            course.artist.name.toLowerCase().includes(searchText) ||
-            course.artist.username.toLowerCase().includes(searchText)
-        );
-    });
-    displayFilteredCourses(filteredCourses);
-}
-
-// Function to display filtered courses
-function displayFilteredCourses(filteredCourses) {
-    var table = document.getElementById("coursesTable");
-    table.innerHTML = ""; // Clear previous content
-
-    // Display filtered courses
-    filteredCourses.forEach(function(course) {
-        var row = table.insertRow();
-        row.innerHTML = "<td>" + course.name + "</td><td>by artist <a href=''>" + course.artist.name + " " + course.artist.username + "</a></td><td>" + course.dateTime + "</td><td><button type='button' class='btn btn-light'>Register Now</button></td>";
-    });
-}
-
-</script>
 </head>
 <body>
      <div class="container-fluid">
@@ -209,63 +145,64 @@ function displayFilteredCourses(filteredCourses) {
     <p style="color: #fff;">
     <p class="h1m">courses</p>
     <p class="h3m">Your way to learn Art</p> </p>
-    <p class="h1m"> Inter artist name :</p>
-        <form method="post" action="search.php">
-        <input type="text" name ="artist" value="" id="searchInput" placeholder="Search...">
-        <input class="butn" type ="submit" name = "submit" value = "search">
-        <!--<button id="search" type="submit" name="submit" onclick="searchCourses()">Search</button>-->
-    </form>
+        <?php
+            $artist="";
+            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+               // check if the form is submitted post method
+                $name = search($_POST['artist']);
+            } 
 
-        <table id="coursesTable">
-        <thead>
-            <tr>
-                <th>Course</th>
-                <th>Artist</th>
-                <th>Date & Time</th>
-                <th>Register Now</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>
-                    <img src="draw.png" alt="Portrait Drawing" style="max-width: 100px; height: auto;">
-                    Portrait Drawing
-                </td>
-                <td>by artist <a href="">@ArwaSaid</a></td>
-                <td>28-04-2024 (10:00 - 12:00 AM)</td>
-                <td><button type="button" class="btn btn-light">Register Now</button></td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="coloring.png" alt="Coloring Basics" style="max-width: 100px; height: auto;">
-                    Coloring Basics
-                </td>
-                <td>by artist <a href="">@NoraHamid</a></td>
-                <td>21-07-2024 (08:00 - 10:00 PM)</td>
-                <td><button type="button" class="btn btn-light">Register Now</button></td>
-            </tr>
-            <tr>
-                <td>
-                    <img src="origami.png" alt="Origami Art" style="max-width: 100px; height: auto;">
-                    Origami Art
-                </td>
-                <td>by artist <a href="">@KimShong</a></td>
-                <td>07-03-2024 (02:00 - 03:00 PM)</td>
-                <td><button type="button" class="btn btn-light">Register Now</button></td>
-            </tr>
-        </tbody>
-    </table>
-    <br/><br/>
-               
-    <div style="text-align: center;">
-        <a href="insert.php">
-            <button type="button" href=""class="btn btn-info" style="width: 49%;">Insert a Course</button> 
-        </a>
-        <a href="delete.php">
-            <button type="button" href=""class="btn btn-danger" style="width: 49%;">Delete a Course</button> 
-        </a>
-    </div>  
+            // function search
+            function search($data){
+                $data = trim($data);
+                $data = stripslashes($data);
+                $data = htmlspecialchars($data);
+                return $data;
+            }
 
+            // data conect
+            $servername = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "dbsadeem";
+            $artist =$_POST['artist'];
+            //creat connection to data base
+            $conn = mysqli_connect($servername,$username,$password,$dbname);
+            if(!$conn){
+                die("Connection failed: ". mysqli_connect_error());
+            }
+            //$artist = $_POST["artist"];
+            // query to select cousre based on artist
+            $sql = "SELECT * FROM courses WHERE artist= '" . $artist . "'";
+            
+            // Exectute the SQL query
+            $result = mysqli_query($conn, $sql); 
+
+            // check if there are rows in the result set
+            if(mysqli_num_rows($result) > 0){
+                //display a table with course info
+                echo "<br/><p class='h3m' style='color:green;'> The Available Courses For This Artist </p>";
+                echo"<table border ='1'><tr><th>Name</th><th>Artist</th><th>Date</th>";
+                while($row = mysqli_fetch_assoc($result)){
+                    echo "<tr>".
+                        "<td>".$row['name']."</td>".
+                        "<td>".$row['artist']."</td>".
+                        "<td>".$row['date']."</td>".
+                        "</tr>";
+                }
+                echo "</table>";
+            }
+            else { //disblay a if not found
+                    echo "<br/><p class='h3m' style='color:red;'> The Artist You Search For Has No Courses Available Now !</p>";
+            }
+
+            mysqli_close($conn);//close the data base connection
+        ?> <br/><br/><br/>
+    <div style="text-align:center;">
+        <a href="courses.html">
+            <button type="button" class="btn btn-outline-dark" style="width: 40%; ">Back to Courses Bage</button>
+        </a>
+    </div>
     <footer>
         <ul>
             <li><a href="about.html">About Us</a></li>
