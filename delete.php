@@ -98,17 +98,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if (!$conn) { 
         die("Connection failed: " . mysqli_connect_error());
     }
+    // query to select courses based on name
+    $nameSql = "SELECT * FROM courses WHERE name= '" . $name . "'";
+    // Exectute the SQL query
+    $nameSql = mysqli_query($conn, $nameSql);
+    //check if course name avalible
+    if(mysqli_num_rows($nameSql) <= 0){
+        echo "</br></br><p class='h3m' style='color:red;'> The Course You Want to Delete is Not Exists ! </p>";
+    }else{
+        //Query to delete a course from the database based on the entered name 
+        $sql = "DELETE FROM courses WHERE name = '" . $name . "'";
 
-    //Query to delete a course from the database based on the entered name 
-    $sql = "DELETE FROM courses WHERE name = '" . $name . "'";
-
-    //Display success or error message 
-    echo "<p class='h3m' style='color:green;'>Record deleted successfully!</p>"; 
-    $result = mysqli_query($conn, $sql); 
-    if ($result){ 
-        echo "";} 
-    else { echo "Error: " . $sql . "<br>" . mysqli_error($conn); 
+        //Display success or error message 
+        echo "<p class='h3m' style='color:green;'>Record deleted successfully!</p>"; 
+        $result = mysqli_query($conn, $sql); 
+        if ($result){ 
+            echo "";} 
+        else { echo "Error: " . $sql . "<br>" . mysqli_error($conn); 
     } 
+    }
     mysqli_close($conn); //Close the database connection 
 }
 ?><br><br>

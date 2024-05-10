@@ -66,14 +66,14 @@
         <div class="container" id="contform">
             <h1>Contact Us</h1>
             <h3>Send a message</h3>
-            <form action="mailto: sadeemartcommunity@gmail.com" method="post" enctype="text/plain">
-                <input class="box" type="text" name="name" placeholder="Your Name" required>
+            <form action="mail.php" method="post" >
+                <input class="box" type="text" name="name" id="name" placeholder="Your Name" required>
                 <br/><br/>
-                <input class="box" type="email" name="email" placeholder="Your Email" required>
+                <input class="box" type="email" name="email" id="email" placeholder="Your Email" required>
                 <br/><br/>
-                <textarea class="box" name="massage" placeholder="Your message" rows="7" required></textarea>
+                <textarea class="box" name="massage" id="massege" placeholder="Your message" rows="7" required></textarea>
                 <br/><br/>
-                <button class="send" type="submit">Send message</button>
+                <input type="submit" value="Send message" class="send" name="submit">
             </form>
            <div class="inf">
             <h5 >Contact Information</h5>

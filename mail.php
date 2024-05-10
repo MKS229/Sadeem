@@ -2,7 +2,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Welcom !</title>
+        <title>Thanks</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <link rel="stylesheet" href="styles1.css">
@@ -49,81 +49,28 @@
         <div class="header">
         <img src="logo.png" alt="logo" class="logo">
         <p class="logo">Sadeem</p>
-        <?php
-// Check if the form is submitted
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $username = search($_POST['username']);
-        $password = search($_POST['password']); 
-    }
-
-    // function search
-    function search($data){
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-
-    
-    // data conect
-    $servername = "localhost";
-    $username = "root";
-    $password = "";
-    $dbname = "dbsadeem";
-    $userName =$_POST['username'];
-    $userPass =$_POST['password'];
-    //creat connection to data base
-    $conn = mysqli_connect($servername,$username,$password,$dbname);
-    if(!$conn){
-        die("Connection failed: ". mysqli_connect_error());
-    }
-
-    // query to select register based on username
-    $userSql = "SELECT * FROM register WHERE user= '" . $userName . "'";
-
-    // Exectute the SQL query
-    $Uresult = mysqli_query($conn, $userSql); 
-
-    // Check if username exists
-    if(mysqli_num_rows($Uresult) > 0){
-        $row = mysqli_fetch_assoc($Uresult);
-        if($row['password'] == $userPass ){
-            //Display welcome back message 
-        echo '<br/></br></br><p class="h3m" style="color: green;">Welcome Back to our community!</p>'.
-            "<div style='text-align:center;'>".
-            "<a href='index.html'>".
-            "<button type='button' class='btn btn-secondary' style='width: 40%; '>Discover SADEEM !</button>".
-            "</a>";
-        }else{
-            //The password not correct.
-        echo "<br/></br></br><p class='h3m' style='color:red;'> The Password You Inter is Not Correct ! </p>".
-        "<div style='text-align:center;'>".
-        "<a href='login.html'>".
-            "<button type='button' class='btn btn-dark' style='width: 40%; '>Return to Login page</button>".
-        "</a></br></br>".
-        "<div style='text-align:center;'>".
-        "<a href='join.html'>".
-            "<button type='button' class='btn btn-info' style='width: 40%; '>New Account !</button>".
-        "</a>";
-        }
-
-    }else {
-        //The user not exicst.
-        echo "<br/></br></br><p class='h3m' style='color:red;'> The Username You Inter Dose Not Exists . </p>".
-            "<div style='text-align:center;'>".
-            "<a href='login.html'>".
-                "<button type='button' class='btn btn-dark' style='width: 40%; '>Return to Login page</button>".
-            "</a></br></br>".
-            "<div style='text-align:center;'>".
-            "<a href='join.html'>".
-                "<button type='button' class='btn btn-info' style='width: 40%; '>New Account !</button>".
-            "</a>";
-    }
         
-    mysqli_close($conn);//close the data base connection
-?>
+        <?php
+            if ($_SERVER["REQUEST_METHOD"] == "POST"){
+                //mail contant
+                $name = $_POST["name"];
+                $email = $_POST["email"];
+                $subject = "New SADEEM Contact Messeg";
+                $message = $_POST["massage"];
+                
+            //the sender
+            $mailHeder = "From:". $name ."<". $email .">\r\n";
+            //our email
+            $recipient = "sadeemartcommunity@gmail.com";
+            //mail function
+            mail($recipient,$subject,$message,$mailHeder)
+            or die("Message fild to Send !"); // if not send
+            // if it send
+            echo "<br/></br></br><p class='h3m' style='color: green;'>Message Send Successfully!</p>".
+                "</br></br><p class='h3m' >We Will Contact You As Soon As Possible.</p>";
+            }
 
+?>
         <footer>
             <ul>
                 <li><a href="about.html">About Us</a></li>
@@ -141,3 +88,4 @@
         </footer>
     </body>
 </html>
+

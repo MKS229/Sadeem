@@ -1,4 +1,4 @@
-
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -113,16 +113,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
     if (!$conn) { 
         die("Connection failed: " . mysqli_connect_error());
     }
-    //SQL query to insert Courses information into the database 
-    $sql = "INSERT INTO courses (name,artist,date) VALUES ('$name', '$artist', '$date')"; 
-    
-    //Display success or error message 
+    // query to select courses based on name
+    $nameSql = "SELECT * FROM courses WHERE name= '" . $name . "'";
+    // Exectute the SQL query
+    $nameSql = mysqli_query($conn, $nameSql);
 
-    echo '<p class="h3m" style="color: green;">Record inserted successfully!</p>'; 
-    $result = mysqli_query($conn, $sql); 
-    if ($result){ 
-        echo "";} 
-    else { echo "Error: " . $sql . "‹br›" . mysqli_error($conn); } 
+    //check if course name avalible
+    if(mysqli_num_rows($nameSql) > 0){
+        echo "</br></br><p class='h3m' style='color:red;'> The Course You Inter is Already Exists ! </p>";
+    }else{
+        //SQL query to insert Courses information into the database 
+        $sql = "INSERT INTO courses (name,artist,date) VALUES ('$name', '$artist', '$date')"; 
+    
+        //Display success or error message 
+
+         echo '<p class="h3m" style="color: green;">Record inserted successfully!</p>'; 
+        $result = mysqli_query($conn, $sql); 
+        if ($result){ 
+            echo "";} 
+        else { echo "Error: " . $sql . "‹br›" . mysqli_error($conn); }
+    }
     mysqli_close($conn); //Close the database connection 
 }
 ?><br><br>
